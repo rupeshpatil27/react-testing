@@ -1,9 +1,12 @@
-const App = () => {
+import { Outlet } from "react-router";
+import { Header } from "./components/header";
+export default function App() {
   return (
-    <div>
-      <h1 class="text-3xl font-bold">React Testing</h1>
-    </div>
+    <>
+      <Header />
+      <main className="px-3 lg:px-14 bg-slate-50">
+        <Outlet />
+      </main>
+    </>
   );
-};
-
-export default App;
+}
