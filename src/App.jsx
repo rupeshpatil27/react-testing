@@ -7,6 +7,9 @@ export default function App() {
       <main className="px-3 lg:px-14 bg-slate-50">
         <Outlet />
       </main>
+
+
+      {/* TODO : clerk setup complete .recheck agian */}
     </>
   );
 }
