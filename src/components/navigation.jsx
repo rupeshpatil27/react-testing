@@ -1,3 +1,4 @@
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { useMedia } from "react-use";
 import { useLocation, useNavigate } from "react-router";
@@ -9,10 +10,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+import { Button } from "./ui/button";
 
 import { NavButton } from "./nav-button";
-import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
 
 const routes = [
   {

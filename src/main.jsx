@@ -4,7 +4,7 @@ import "./index.css";
 import { RouterProvider } from "react-router";
 import { ClerkProvider } from "@clerk/clerk-react";
 import QueryProviders from "./providers/query-provider";
-// import StoreProvider from "./providers/store-provider";
+import StoreProvider from "./providers/store-provider";
 
 import { router } from "./routes";
 
@@ -15,16 +15,13 @@ if (!PUBLISHABLE_KEY) {
 }
 
 createRoot(document.getElementById("root")).render(
-  // <StoreProvider>
-  <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <QueryProviders>
-        <RouterProvider router={router} />
-      </QueryProviders>
-    </ClerkProvider>
-  </StrictMode>,
+  <StoreProvider>
+    <StrictMode>
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+        <QueryProviders>
+          <RouterProvider router={router} />
+        </QueryProviders>
+      </ClerkProvider>
+    </StrictMode>
+  </StoreProvider>,
 );
-
-{
-  /* </StoreProvider> */
-}

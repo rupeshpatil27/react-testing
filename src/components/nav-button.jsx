@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router";
 
 export const NavButton = ({ href, label, isActive }) => {
   return (

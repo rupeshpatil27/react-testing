@@ -14,12 +14,20 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
+  useUser,
 } from "@clerk/clerk-react";
-import { Loader2 } from "lucide-react";
+import { Loader2, ShoppingCart } from "lucide-react";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+  const { user } = useUser();
+
+  const totalItems = useSelector((state) =>
+    state?.cart?.items.reduce((total, item) => total + item.quantity, 0),
+  );
+
   return (
-    <header className="border-b p-4 flex justify-between items-center bg-white sticky top-0 z-50">
+    <header className="border-b w-full p-4 flex justify-between items-center bg-white sticky top-0 z-50">
       <div className="w-full flex items-center justify-between">
         <div className="flex lg:gap-x-16 items-center">
           <HeaderLogo />
@@ -27,6 +35,15 @@ export const Header = () => {
         </div>
 
         <div className="flex gap-4 items-center">
+          <div className="relative cursor-pointer">
+            <ShoppingCart className="size-6 text-slate-700" />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-[10px] font-bold rounded-full size-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </div>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">Language</Button>
@@ -47,6 +64,7 @@ export const Header = () => {
               </Button>
             </SignedOut>
             <SignedIn>
+              <p>Hello, {user?.firstName}!</p>
               <UserButton />
             </SignedIn>
           </ClerkLoaded>
@@ -55,79 +73,3 @@ export const Header = () => {
     </header>
   );
 };
-
-// import i18n from "i18next";
-// import { initReactI18next } from "react-i18next";
-// import LanguageDetector from "i18next-browser-languagedetector";
-
-// const resources = {
-//   en: {
-//     translation: {
-//       "language": "Language",
-//       "login": "Login",
-//       "welcome": "Welcome to our shop"
-//     }
-//   },
-//   es: {
-//     translation: {
-//       "language": "Idioma",
-//       "login": "Iniciar sesión",
-//       "welcome": "Bienvenido a nuestra tienda"
-//     }
-//   }
-// };
-
-// i18n
-//   .use(LanguageDetector)
-//   .use(initReactI18next)
-//   .init({
-//     resources,
-//     fallbackLng: "en",
-//     interpolation: { escapeValue: false }
-//   });
-
-// export default i18n;
-
-// import { useTranslation } from "react-i18next";
-// // ... other imports
-
-// export const Header = () => {
-//   const { t, i18n } = useTranslation();
-
-//   const changeLanguage = (lng: string) => {
-//     i18n.changeLanguage(lng);
-//   };
-
-//   return (
-//     <header className="...">
-//       {/* ... logo and navigation ... */}
-
-//       <div className="flex gap-4 items-center">
-//         <DropdownMenu>
-//           <DropdownMenuTrigger asChild>
-//             <Button variant="outline">{t("language")}</Button>
-//           </DropdownMenuTrigger>
-//           <DropdownMenuContent>
-//             <DropdownMenuItem onClick={() => changeLanguage("en")}>
-//               English
-//             </DropdownMenuItem>
-//             <DropdownMenuItem onClick={() => changeLanguage("es")}>
-//               Spanish
-//             </DropdownMenuItem>
-//           </DropdownMenuContent>
-//         </DropdownMenu>
-
-//         <ClerkLoaded>
-//           <SignedOut>
-//             <Button>
-//               <Link to="/sign-in">{t("login")}</Link>
-//             </Button>
-//           </SignedOut>
-//           <SignedIn>
-//             <UserButton />
-//           </SignedIn>
-//         </ClerkLoaded>
-//       </div>
-//     </header>
-//   );
-// };

@@ -23,7 +23,6 @@ import { Input } from "./ui/input";
 export function DataTable({ columns, data, filterKey, onDelete, disabled }) {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
-  const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
     data,
     columns,
@@ -33,11 +32,9 @@ export function DataTable({ columns, data, filterKey, onDelete, disabled }) {
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
-      rowSelection,
     },
   });
 
@@ -52,18 +49,6 @@ export function DataTable({ columns, data, filterKey, onDelete, disabled }) {
           }
           className="max-w-sm"
         />
-        {table.getFilteredSelectedRowModel().rows.length > 0 && (
-          <Button
-            disabled={disabled}
-            size="sm"
-            variant="outline"
-            className="ml-auto font-normal text-xs"
-            onClick={async () => {}}
-          >
-            <Trash className="size-4 mr-2" />
-            Delete ({table.getFilteredSelectedRowModel().rows.length})
-          </Button>
-        )}
       </div>
       <div className="overflow-hidden rounded-md border">
         <Table>
@@ -116,10 +101,6 @@ export function DataTable({ columns, data, filterKey, onDelete, disabled }) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="text-muted-foreground flex-1 text-sm">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
         <Button
           variant="outline"
           size="sm"

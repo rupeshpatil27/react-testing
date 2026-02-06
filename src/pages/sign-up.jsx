@@ -39,7 +39,7 @@ const SignUpPage = () => {
             elements: {
               rootBox: "w-full",
               card: "shadow-none border-none p-0 bg-transparent",
-              header: "hidden", // Removes default Clerk branding
+              header: "hidden",
               formButtonPrimary:
                 "bg-blue-700 hover:bg-blue-800 text-sm normal-case py-3 shadow-md transition-all",
               socialButtonsBlockButton:

@@ -5,7 +5,6 @@ import { Loader2, ShoppingBag } from "lucide-react";
 const SignInPage = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-white p-8 lg:p-12">
-      {/* Mobile Logo: Shows only on small screens */}
       <div className="mb-10 flex flex-col items-center gap-2 md:hidden">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-700 text-white shadow-lg shadow-blue-700/20">
           <ShoppingBag size={28} />
