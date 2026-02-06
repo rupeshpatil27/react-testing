@@ -5,23 +5,13 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { Link } from "react-router";
 import { HeaderLogo } from "./header-logo";
 import { Navigation } from "./navigation";
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-} from "@clerk/clerk-react";
-import { Loader2, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
+import { Greet } from "./greet";
 
 export const Header = () => {
-  const { user } = useUser();
-
   const totalItems = useSelector((state) =>
     state?.cart?.items.reduce((total, item) => total + item.quantity, 0),
   );
@@ -54,20 +44,7 @@ export const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <ClerkLoading>
-            <Loader2 className="size-8 animate-spin text-accent-400" />
-          </ClerkLoading>
-          <ClerkLoaded>
-            <SignedOut>
-              <Button>
-                <Link to="/sign-in">Login</Link>
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              <p>Hello, {user?.firstName}!</p>
-              <UserButton />
-            </SignedIn>
-          </ClerkLoaded>
+          <Greet />
         </div>
       </div>
     </header>
