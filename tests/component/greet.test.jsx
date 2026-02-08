@@ -1,4 +1,4 @@
-import { it, expect, describe, vi, beforeEach } from "vitest";
+import { vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Greet } from "@/components/greet";
 import { MemoryRouter } from "react-router";
