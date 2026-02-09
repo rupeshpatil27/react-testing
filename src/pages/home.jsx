@@ -1,11 +1,13 @@
-import React from 'react'
+import { TermsAndConditions } from "@/components/terms-and-conditions";
+import React from "react";
 
 const HomePage = () => {
   return (
-    <div>Home Page</div>
-  )
-}
+    <div className="space-y-2">
+      <h1>Home Page</h1>
+      <TermsAndConditions />
+    </div>
+  );
+};
 
-export default HomePage
-
-
+export default HomePage;
